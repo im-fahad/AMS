@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +16,4 @@ use App\Providers\RouteServiceProvider;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
-Route::get('/greeting', function () {
-    return 'Hello World';
-});
-Route::get('/logs', function () {
-    return response('logs');
 });
