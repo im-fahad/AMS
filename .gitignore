@@ -3,3 +3,4 @@
 .git
 .env
 /docker/mysql/data
+/docker/php/fpm/nginx/logs
