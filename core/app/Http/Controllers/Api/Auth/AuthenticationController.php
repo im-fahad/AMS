@@ -22,11 +22,11 @@ class AuthenticationController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 400, 'message' => 'Bad Request']);
         }
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
+
+        $user = $request->all();
+        $user['password'] = bcrypt($request->password);
+
+        User::create($user);
 
         return response()->json([
             'status' => 200,
