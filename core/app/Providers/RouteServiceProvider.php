@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public static string $PREFIX = 'api/v1';
+    public static $PREFIX = 'api/v1';
     /**
      * The path to the "home" route for your application.
      *
@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
+    protected $namespace = 'App\Http\Controllers';
+    public static $apiNamespace = 'App\Http\Controllers\\Api';
 
     /**
      * The controller namespace for the application.
@@ -41,7 +43,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::prefix(self::$PREFIX)
                 ->middleware('api')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
