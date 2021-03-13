@@ -48,6 +48,9 @@ class UserController extends Controller
         if ((auth()->user()->id !== $user->id) && ((auth()->user()->role == Role::SUPER_ADMIN) || (auth()->user()->role == Role::ADMIN))) {
             $user->delete();
 
+            if (File::exists('images/users/' . $user->avatar)) {
+                File::delete('images/users/' . $user->avatar);
+            }
             return response()->json([
                 'status' => 200,
                 'message' => 'Successfully User Delete'

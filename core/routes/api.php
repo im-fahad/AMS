@@ -27,7 +27,11 @@ Route::namespace(RouteServiceProvider::$apiNamespace)->group(function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/update-user', 'UserController@update')->name('update-user');
-        Route::post('/user/{user}/delete', 'UserController@delete')->name('delete-user');
+        Route::put('/user/{user}/delete', 'UserController@delete')->name('delete-user');
+
+        Route::post('/company/create', 'CompanyController@create')->name('company-create');
+        Route::post('/company/{company}/update', 'CompanyController@update')->name('company-update');
+        Route::post('/company/{company}/delete', 'CompanyController@delete')->name('company-delete');
     });
 });
 
