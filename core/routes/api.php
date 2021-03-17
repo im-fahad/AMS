@@ -32,9 +32,12 @@ Route::namespace(RouteServiceProvider::$apiNamespace)->group(function () {
         Route::post('/company/create', 'CompanyController@create')->name('company-create');
         Route::post('/company/{company}/update', 'CompanyController@update')->name('company-update');
         Route::post('/company/{company}/delete', 'CompanyController@delete')->name('company-delete');
+
+        Route::post('/signin', 'AttendanceController@signIn')->name('signin');
+        Route::post('/signout', 'AttendanceController@signOut')->name('signout');
     });
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return $request->user()->attendance;
 });

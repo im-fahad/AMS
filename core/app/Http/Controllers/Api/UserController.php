@@ -37,10 +37,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Successfully User Data Updated'
-        ]);
+        return success_res('Successfully User Data Updated');
     }
 
     public function delete(User $user)
@@ -51,16 +48,10 @@ class UserController extends Controller
             if (File::exists('images/users/' . $user->avatar)) {
                 File::delete('images/users/' . $user->avatar);
             }
-            return response()->json([
-                'status' => 200,
-                'message' => 'Successfully User Delete'
-            ]);
+            return success_res('Successfully User Delete');
 
         }
 
-        return response()->json([
-            'status' => 500,
-            'message' => 'Unauthorized'
-        ]);
+        return unauthorized_res();
     }
 }

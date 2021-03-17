@@ -11,6 +11,17 @@ use Image;
 
 class CompanyController extends Controller
 {
+    public function companyList()
+    {
+        $companies = Company::all();
+        return res($companies);
+    }
+
+    public function getCompany(Company $company)
+    {
+        return res($company);
+    }
+
     public function create(CompanyRequest $request)
     {
         $data = $request->all();
@@ -25,10 +36,7 @@ class CompanyController extends Controller
 
         Company::create($data);
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Successfully Company Created!'
-        ]);
+        return success_res('Successfully Company Created!');
     }
 
     public function update(CompanyRequest $request, Company $company)
@@ -48,10 +56,7 @@ class CompanyController extends Controller
 
         $company->update($data);
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Successfully Company Updated!'
-        ]);
+        return success_res('Successfully Company Updated!');
     }
 
     public function delete(Company $company)
@@ -62,15 +67,10 @@ class CompanyController extends Controller
             if (File::exists('images/company/' . $company->logo)) {
                 File::delete('images/company/' . $company->logo);
             }
-            return response()->json([
-                'status' => 200,
-                'message' => 'Successfully Company Deleted!'
-            ]);
+
+            return success_res('Successfully Company Deleted!');
         }
 
-        return response()->json([
-            'status' => 500,
-            'message' => 'Unauthorized'
-        ]);
+        return unauthorized_res();
     }
 }

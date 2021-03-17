@@ -79,13 +79,29 @@ class User extends Authenticatable
     {
         return ($this->role == Role::ADMIN || Role::SUPER_ADMIN);
     }
-    public function isModerator(){
+
+    public function isModerator()
+    {
         return ($this->role == Role::MODERATOR);
     }
-    public function isUser(){
+
+    public function isUser()
+    {
         return ($this->role == Role::USER);
     }
-    public function isEmployee(){
+
+    public function isEmployee()
+    {
         return ($this->role == Role::EMPLOYEE);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class,'employee_id');
     }
 }

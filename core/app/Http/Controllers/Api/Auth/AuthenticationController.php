@@ -20,7 +20,7 @@ class AuthenticationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 400, 'message' => 'Bad Request']);
+            return bad_req_res();
         }
 
         $user = $request->all();
@@ -28,10 +28,7 @@ class AuthenticationController extends Controller
 
         User::create($user);
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'User Created Successfully!'
-        ]);
+        return success_res('User Created Successfully!');
     }
 
     public function login(Request $request)
@@ -42,16 +39,13 @@ class AuthenticationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 400, 'message' => 'Bad Request']);
+            return bad_req_res();
         }
 
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'status' => 500,
-                'message' => 'Unauthorized'
-            ]);
+            return unauthorized_res();
         }
 
         $user = User::where('email', $request->email)->first();
@@ -67,10 +61,6 @@ class AuthenticationController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Token Deleted Successfully!'
-        ]);
+        return success_res('Token Deleted Successfully!');
     }
 }

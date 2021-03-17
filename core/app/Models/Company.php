@@ -59,7 +59,7 @@ class Company extends Model
         return $username;
     }
 
-    public function creator()
+    public function employee()
     {
         $this->belongsTo(User::class, 'creator_id', 'id');
     }
