@@ -36,15 +36,22 @@ Route::namespace(RouteServiceProvider::$apiNamespace)->group(function () {
         Route::post('/signin', 'AttendanceController@signIn')->name('signin');
         Route::post('/signout', 'AttendanceController@signOut')->name('signout');
 
-        Route::get('departments', 'DepartmentController@getAll')->name('departments');
-        Route::post('department/create', 'DepartmentController@store')->name('department-create');
-        Route::post('department/{department}/update', 'DepartmentController@update')->name('department-update');
-        Route::post('department/{department}/delete', 'DepartmentController@delete')->name('department-delete');
+        Route::get('/departments', 'DepartmentController@getAll')->name('departments');
+        Route::post('/department/create', 'DepartmentController@store')->name('department-create');
+        Route::post('/department/{department}/update', 'DepartmentController@update')->name('department-update');
+        Route::post('/department/{department}/delete', 'DepartmentController@delete')->name('department-delete');
 
-        Route::get('designations', 'DesignationController@getAll')->name('designations');
-        Route::post('designation/create', 'DesignationController@store')->name('designation-create');
-        Route::post('designation/{designation}/update', 'DesignationController@update')->name('designation-update');
-        Route::post('designation/{designation}/delete', 'DesignationController@delete')->name('designation-delete');
+        Route::get('/designations', 'DesignationController@getAll')->name('designations');
+        Route::post('/designation/create', 'DesignationController@store')->name('designation-create');
+        Route::post('/designation/{designation}/update', 'DesignationController@update')->name('designation-update');
+        Route::post('/designation/{designation}/delete', 'DesignationController@delete')->name('designation-delete');
+
+        Route::get('/leaves', 'LeaveController@getAll')->name('leaves');
+        Route::post('/leave/request', 'LeaveController@store')->name('leave-request');
+        Route::post('/leave/{leave}/update', 'LeaveController@update')->name('leave-update');
+        Route::post('/leave/{leave}/accept', 'LeaveController@accept')->name('leave-accept');
+        Route::post('/leave/{leave}/reject', 'LeaveController@reject')->name('leave-reject');
+        Route::post('/leave/{leave}/delete', 'LeaveController@delete')->name('leave-delete');
     });
 });
 

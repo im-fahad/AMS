@@ -13,11 +13,7 @@ class DesignationController extends Controller
     {
         $designations = Designation::all();
 
-        return response()->json([
-            'code' => 200,
-            'success' => true,
-            'data' => $designations
-        ]);
+        return res($designations);
     }
 
     public function store(DesignationRequest $request)

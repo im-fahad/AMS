@@ -52,10 +52,6 @@ class User extends Authenticatable
         });
     }
 
-//    public function name(){
-//        return ($this->first_name . ' ' . $this->last_name);
-//    }
-
     public function isUsernameExists($username)
     {
         return static::where('username', $username)->exists();
@@ -113,5 +109,10 @@ class User extends Authenticatable
     public function designation()
     {
         return $this->belongsTo(Designation::class, 'designation_id', 'id');
+    }
+
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class, 'employee_id');
     }
 }

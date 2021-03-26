@@ -13,11 +13,7 @@ class DepartmentController extends Controller
     {
         $departments = Department::all();
 
-        return response()->json([
-            'code' => 200,
-            'success' => true,
-            'data' => $departments
-        ]);
+        return res($departments);
     }
 
     public function store(DepartmentRequest $request)
