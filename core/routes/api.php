@@ -35,6 +35,16 @@ Route::namespace(RouteServiceProvider::$apiNamespace)->group(function () {
 
         Route::post('/signin', 'AttendanceController@signIn')->name('signin');
         Route::post('/signout', 'AttendanceController@signOut')->name('signout');
+
+        Route::get('departments', 'DepartmentController@getAll')->name('departments');
+        Route::post('department/create', 'DepartmentController@store')->name('department-create');
+        Route::post('department/{department}/update', 'DepartmentController@update')->name('department-update');
+        Route::post('department/{department}/delete', 'DepartmentController@delete')->name('department-delete');
+
+        Route::get('designations', 'DesignationController@getAll')->name('designations');
+        Route::post('designation/create', 'DesignationController@store')->name('designation-create');
+        Route::post('designation/{designation}/update', 'DesignationController@update')->name('designation-update');
+        Route::post('designation/{designation}/delete', 'DesignationController@delete')->name('designation-delete');
     });
 });
 
