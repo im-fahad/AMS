@@ -28,4 +28,9 @@ class Department extends Model
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+
+    public function designations()
+    {
+        return $this->hasMany(Designation::class, 'department_id');
+    }
 }

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(\App\Enum\Role::USER);
             $table->integer('company_id')->nullable();
             $table->integer('department_id')->nullable();
-            $table->integer('position_id')->nullable();
+            $table->integer('designation_id')->nullable();
             $table->date('joined_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

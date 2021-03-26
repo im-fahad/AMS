@@ -102,6 +102,16 @@ class User extends Authenticatable
 
     public function attendance()
     {
-        return $this->hasMany(Attendance::class,'employee_id');
+        return $this->hasMany(Attendance::class, 'employee_id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id', 'id');
     }
 }
