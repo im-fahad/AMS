@@ -46,6 +46,11 @@ Route::namespace(RouteServiceProvider::$apiNamespace)->group(function () {
         Route::post('/designation/{designation}/update', 'DesignationController@update')->name('designation-update');
         Route::post('/designation/{designation}/delete', 'DesignationController@delete')->name('designation-delete');
 
+        Route::get('leave-types', 'LeaveTypeController@getAll')->name('leave-types');
+        Route::post('leave-type/create', 'LeaveTypeController@store')->name('leave-type-create');
+        Route::post('leave-type/{type}/update', 'LeaveTypeController@update')->name('leave-type-update');
+        Route::post('leave-type/{type}/delete', 'LeaveTypeController@delete')->name('leave-type-delete');
+
         Route::get('/leaves', 'LeaveController@getAll')->name('leaves');
         Route::post('/leave/request', 'LeaveController@store')->name('leave-request');
         Route::post('/leave/{leave}/update', 'LeaveController@update')->name('leave-update');
